@@ -1,0 +1,631 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Proctor Form Fillup</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
+    <link rel="stylesheet" href="./style.css">
+    <!-- <link rel="stylesheet" href="./password_verify.css"> -->
+    <style>
+        /* CSS: Add basic styling for the autocomplete suggestions dropdown */
+        .autocomplete-items {
+            border: 1px solid #d4d4d4;
+            border-bottom: none;
+            border-top: none;
+            z-index: 99;
+            position: absolute;
+            background-color: #fff;
+            max-height: 150px;
+            overflow-y: auto;
+            width: 100%;
+        }
+
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #fff;
+            border-bottom: 1px solid #d4d4d4;
+        }
+
+        .autocomplete-items div:hover {
+            background-color: #e9e9e9;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- partial:index.partial.html -->
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-11 col-sm-10 col-md-10 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
+                <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                    <h2 id="heading">Sign Up For Proctor Form</h2>
+                    <p>Fill all the required fields carefully to go to the next page. </p>
+                    <form id="msform" action="form.php" method="POST" enctype="multipart/form-data">
+                        <!-- progressbar -->
+                        <ul id="progressbar">
+                            <li class="active" id="account"><strong>Account</strong></li>
+                            <li id="personal"><strong>Personal</strong></li>
+                            <li id="payment"><strong>Academics</strong></li>
+                            <li id="confirm"><strong>Finish</strong></li>
+                        </ul>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div> <br>
+
+                        <!-- fieldsets -->
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h2 class="fs-title">Signup:</h2>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Step 1 - 4</h2>
+                                    </div>
+                                </div>
+                                <label class="fieldlabels">Regd. Number: *</label>
+                                <input type="text" name="roll_no" placeholder="Registration Number" />
+
+                                <label class="fieldlabels">Email: *</label>
+                                <input type="email" name="email" placeholder="Email Id" autocomplete="email" />
+
+                                <label class="fieldlabels">Username: *</label>
+                                <input type="text" name="username" placeholder="UserName" />
+
+                                <!-- Token input  -->
+                                <label class="fieldlabels">Token</label>
+                                <input type="text" name="token" placeholder="Token" />
+
+
+                            </div>
+                            <input type="button" name="clear" class="clearButton action-button"
+                                value="Clear Saved Data" />
+                            <input type="button" name="next" class="next action-button" value="Next" />
+                        </fieldset>
+
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h2 class="fs-title">Personal Information:</h2>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Step 2 - 4</h2>
+                                    </div>
+                                </div>
+
+                                <!--  -->
+                                <label class="fieldlabels">Upload Your Photo: *</label>
+                                <div class="avatar-container">
+                                    <div class="avatar-upload">
+                                        <div class="avatar-edit">
+                                            <input type='file' id="imageUpload" name="pic" />
+                                            <label for="imageUpload"></label>
+                                        </div>
+                                        <div class="avatar-preview">
+                                            <div id="imagePreview"
+                                                style="background-image: url('./images/default.jpg');">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="link-text">
+                                        <label class="fieldlabels">Enter google drive Link of your Image: *</label>
+                                        <input type="text" name="pic_link" id="profile_drive_link"
+                                            placeholder="Image Link" />
+                                        <div class="link-contain">
+                                            <p style="font-size: 1.3em;">If Image is not working 👇</p>
+                                            <a href="google.com" class="text-attention" target="_blank">🔗 Click here to
+                                                view the tutorial</a>
+                                        </div>
+                                    </div>
+                                </div> <br>
+                                <label class="fieldlabels">First Name: *</label>
+                                <input type="text" name="fname" placeholder="First Name" autocomplete="given-name" />
+
+                                <label class="fieldlabels">Last Name: *</label>
+                                <input type="text" name="lname" placeholder="Last Name" autocomplete="family-name" />
+
+
+                                <label class="fieldlabels">Year of admission: *</label>
+                                <input type="number" min="2000" max="2050" step="1" value="2020"
+                                    name="year_of_admission" />
+
+                                <label class="fieldlabels">Branch: *</label> <br>
+                                <select name="branch" id="">
+
+                                    <option value="">Select Branch</option>
+                                    <option value="it">Information Technology</option>
+                                    <option value="mechanical">Mechanical</option>
+                                    <option value="electrical">Electrical</option>
+                                    <option value="etc">Electronics and Telecommunication Engineering</option>
+                                    <option value="civil">Civil</option>
+                                    <option value="arch">Architectural Assistantship </option>
+                                    <option value="mom">Modern Office Management</option>
+                                    <option value="bc">Beauty Culture</option>
+                                </select> <br>
+                                <label class="fieldlabels">Proctor teacher: </label> <br>
+                                <select name="proc_teacher" id="">
+                                    <option value="">Select Proctor Teacher</option>
+
+
+                                </select> <br>
+                                <label class="fieldlabels">Semester: </label> <br>
+                                <select name="semester" id="">
+                                    <option value="">Select Semester</option>
+                                    <option value="1">First Semester</option>
+                                    <option value="2">Second Semester</option>
+                                    <option value="3">Third Semester</option>
+                                    <option value="4">Fourth Semester</option>
+                                    <option value="5">Fifth Semester</option>
+                                    <option value="6">Sixth Semester</option>
+                                </select> <br>
+                                <label class="fieldlabels">Contact No.: *</label>
+                                <input type="text" name="phno" placeholder="Contact No." />
+
+                                <label class="fieldlabels">Whatsapp No.: *</label>
+                                <input type="text" name="contact_wp" placeholder="Whatsapp No." />
+
+                                <label class="fieldlabels">Gender: *</label> <br>
+                                <!-- gender male female and others -->
+                                <input type="radio" class="gen" name="gender" id="" value="male"> Male
+                                <br>
+                                <input type="radio" class="gen" name="gender" id="" value="female"> Female
+                                <br>
+                                <input type="radio" class="gen" name="gender" id="" value="others"> Others
+                                <br>
+                                <label class="fieldlabels">Date of Birth: *</label>
+                                <input type="date" name="dob" />
+
+                                <label class="fieldlabels">Aadhar Number: *</label>
+                                <input type="text" name="aadhaar_no" id="aadhaar_no" placeholder="Aadhar Number"
+                                    maxlength="14" />
+
+
+                                <label class="fieldlabels">Category: *</label> <br>
+                                <select name="category" id="">
+                                    <option value="">Select Catagory</option>
+                                    <option value="General">General</option>
+                                    <option value="OBC">OBC</option>
+                                    <option value="SC">SC</option>
+                                    <option value="ST">ST</option>
+                                </select> <br> <br>
+
+                                <label class="fieldlabels">Blood group: *</label> <br>
+                                <select name="blood_group" id="">
+                                    <option value="">Select Blood Group</option>
+                                    <option value="A +ve">A+</option>
+                                    <option value="A -ve">A-</option>
+                                    <option value="B +ve">B+</option>
+                                    <option value="B -ve">B-</option>
+                                    <option value="AB +ve">AB+</option>
+                                    <option value="AB -ve">AB-</option>
+                                    <option value="O +ve">O+</option>
+                                    <option value="O -ve">O-</option>
+                                </select>
+
+                                <br>
+                                <label class="fieldlabels">Living in hostel: *</label> <br>
+                                <input type="radio" class="hostel gen" name="hostel" id="" value="Hostel"> Yes
+                                <br>
+                                <input type="radio" class="hostel gen" name="hostel" id="" value="Day Scholar"> No
+                                <br>
+
+                                <label class="fieldlabels">Hostel Name: *</label> <br>
+                                <select name="hostel_name" id="">
+                                    <option value="">Select Hostel Name</option>
+                                    <option value="Hostel 1">Boys Hostel 1</option>
+                                    <option value="Hostel 1">Boys Hostel 2</option>
+                                    <option value="Hostel 2">Girls Hostel</option>
+                                </select> <br>
+
+                                <h3>Present Address</h3>
+
+                                <label class="fieldlabels">Flat, House no., Building, Company, Apartment: *</label>
+                                <input id="pflat_details" type="text" name="pflat_details"
+                                    placeholder="Flat, House no., Building, Company, Apartment" required />
+
+                                <br>
+
+
+
+                                <label class="fieldlabels">Area, Street, Sector, Village: *</label>
+                                <input id="parea_details" type="text" name="parea_details"
+                                    placeholder="Area, Street, Sector, Village" required />
+                                <div id="suggestions" class="autocomplete-items"></div>
+                                <br>
+
+                                <label class="fieldlabels">Landmark:</label>
+                                <input id="plandmark" type="text" name="plandmark"
+                                    placeholder="E.g. near Apollo Hospital" />
+                                <br>
+
+                                <label class="fieldlabels">Town/City: *</label>
+                                <input id="pcity" type="text" name="pcity" placeholder="Town/City" required />
+                                <br>
+
+                                <label class="fieldlabels">State: *</label>
+                                <input id="pstate" type="text" name="pstate" placeholder="State" required />
+                                <br>
+
+                                <label class="fieldlabels">Pincode: *</label>
+                                <input id="ppincode" type="text" name="ppincode" placeholder="6 digits [0-9] PIN code"
+                                    maxlength="6" pattern="[0-9]{6}" required />
+                                <br>
+
+
+
+                                <h3>Permanent Address</h3>
+
+                                <label class="fieldlabels">Flat, House no., Building, Company, Apartment: *</label>
+                                <input id="pflat_details" type="text" name="flat_details"
+                                    placeholder="Flat, House no., Building, Company, Apartment" required />
+
+                                <br>
+
+                                <label class="fieldlabels">Pincode: *</label>
+                                <input id="pincode" type="text" name="pincode" placeholder="6 digits [0-9] PIN code"
+                                    maxlength="6" pattern="[0-9]{6}" required />
+                                <br>
+
+
+
+                                <label class="fieldlabels">Area, Street, Sector, Village: *</label>
+                                <input id="area_details" type="text" name="area_details"
+                                    placeholder="Area, Street, Sector, Village" required />
+                                <div id="suggestions2" class="autocomplete-items"></div>
+                                <br>
+
+                                <label class="fieldlabels">Landmark:</label>
+                                <input id="landmark" type="text" name="landmark"
+                                    placeholder="E.g. near Apollo Hospital" />
+                                <br>
+
+                                <label class="fieldlabels">Town/City: *</label>
+                                <input id="city" type="text" name="city" placeholder="Town/City" required />
+                                <br>
+
+                                <label class="fieldlabels">State: *</label>
+                                <input id="state" type="text" name="state" placeholder="State" required />
+                                <br>
+
+                                <br>
+                                <label class="fieldlabels">Father's Name: *</label>
+                                <input type="text" name="father_name" placeholder="Father's Name" />
+                                <br>
+                                <label class="fieldlabels">Father's Occupation: *</label>
+                                <input type="text" name="father_occupation" placeholder="Father's Occupation" />
+                                <br>
+                                <label class="fieldlabels">Father's Contact No.: *</label>
+                                <input type="text" name="father_contact" placeholder="Father's Contact No." />
+                                <br>
+                                <label class="fieldlabels">Mother's Name: *</label>
+                                <input type="text" name="mother_name" placeholder="Mother's Name" />
+                                <br>
+                                <label class="fieldlabels">Mother's Occupation: *</label>
+                                <input type="text" name="mother_occupation" placeholder="Mother's Occupation" />
+                                <br>
+                                <label class="fieldlabels">Mother's Contact No.: *</label>
+                                <input type="text" name="mother_contact" placeholder="Mother's Contact No." />
+                                <br>
+                                <label class="fieldlabels">Guardian's Name: *</label>
+                                <input type="text" name="guardian_name" placeholder="Guardian's Name" />
+                                <br>
+                                <label class="fieldlabels">Guardian's Occupation: *</label>
+                                <input type="text" name="guardian_occupation" placeholder="Guardian's Occupation" />
+                                <br>
+                                <label class="fieldlabels">Guardian's Contact No.: *</label>
+                                <input type="text" name="guardian_contact" placeholder="Guardian's Contact No." />
+                                <br>
+                                <label class="fieldlabels">Name of the Scholarship Recieved: *</label>
+                                <input type="text" name="scholarship" placeholder="Type no if not recieved" />
+
+                                <!-- strength, weakness, extra curricular activities, Hobbey -->
+                                <label class="fieldlabels">Your Strength: *</label>
+                                <textarea name="strength" id="" cols="30" rows="3"></textarea>
+                                <br>
+                                <label class="fieldlabels">Your Weakness: *</label>
+                                <textarea name="weakness" id="" cols="30" rows="3"></textarea>
+                                <br>
+                                <label class="fieldlabels">Your Hobbies: *</label>
+                                <textarea name="hobbies" id="" cols="30" rows="3"></textarea>
+                                <br>
+                                <label class="fieldlabels">Your Extra Curricular Activities: *</label>
+                                <textarea name="extra_curricular" id="" cols="30" rows="3"></textarea>
+                                <br>
+                            </div>
+                            <input type="button" name="next" class="next action-button" value="Next" />
+                            <input type="button" name="previous" class="previous action-button-previous"
+                                value="Previous" />
+                            <input type="button" name="clear" class="clearButton action-button"
+                                value="Clear Saved Data" />
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h2 class="fs-title">Image Upload:</h2>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Step 3 - 4</h2>
+                                    </div>
+                                </div>
+
+                                <label class="fieldlabels">HSC / 10<sup>th</sup>: *</label> <br>
+                                <!--<input type="file" name="hsc" id="hsc_image" accept="image/*" placeholder="image">-->
+                                <input type="file" name="doc_10th" accept=".pdf,.jpg,.jpeg,.png">
+
+                                <input type="text" name="hsc_mark" id="" placeholder="Marks in percentage">
+                                <input type="text" name="hsc_year" id="" placeholder="Year of passing">
+
+                                <!-- mark in 12th or ITI -->
+                                <label class="fieldlabels">12th / ITI: *</label>
+                                <!--<input type="file" name="12th" accept="image/*" placeholder="image">-->
+                                <input type="file" name="doc_12th" accept=".pdf,.jpg,.jpeg,.png">
+                                <input type="text" name="12_mark" id="" placeholder="Marks in percentage">
+                                <input type="text" name="12_year" id="" placeholder="Year of passing">
+
+                                <!-- mark in Diploma 1-6th sem -->
+                                <label class="fieldlabels">Diploma: *</label>
+                                <input type="text" name="one" id="" placeholder="1st sem in percentage">
+                                <input type="text" name="two" id="" placeholder="2nd sem in percentage">
+                                <input type="text" name="three" id="" placeholder="3rd sem in percentage">
+                                <input type="text" name="four" id="" placeholder="4th sem in percentage">
+                                <input type="text" name="five" id="" placeholder="5th sem in percentage">
+                                <input type="text" name="six" id="" placeholder="6th sem in percentage">
+
+
+                            </div>
+                            <!-- <input type="button" name="next" id="last" class="next action-button" value="Next" /> -->
+                            <input type="submit" name="submit" id="submit" class="next action-button" value="submit" />
+                            <input type="button" name="previous" class="previous action-button-previous"
+                                value="Previous" />
+                            <input type="button" name="clear" class="clearButton action-button"
+                                value="Clear Saved Data" />
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h2 class="fs-title">Finish:</h2>
+                                    </div>
+                                    <div class="col-5">
+                                        <h2 class="steps">Step 4 - 4</h2>
+                                    </div>
+                                </div> <br><br>
+                                <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2> <br>
+
+                                <div class="row justify-content-center">
+                                    <div class="col-3"> <img src="./images/success.gif" class="fit-image">
+                                    </div>
+                                </div> <br><br>
+                                <div class="row justify-content-center">
+                                    <div class="col-7 text-center">
+                                        <h5 class="purple-text text-center">You Have Successfully Signed Up</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="button" name="previous" class="previous action-button-previous"
+                                value="Previous" />
+                            <input type="button" name="clear" class="clearButton action-button"
+                                value="Clear Saved Data" />
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- partial -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <!-- <script src="./password_validation.js"></script> -->
+    <script src="./script.js"></script>
+
+    <script>
+        // JavaScript: Implement autocomplete functionality
+        document.getElementById('parea_details').addEventListener('input', function () {
+            const query = this.value;
+            const apiKey = 'ec885b74941242f396d823ab142d3810';
+
+            if (query.length > 2) {  // Start searching after the user has typed at least 3 characters
+                const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(query)}&key=${apiKey}&limit=10&countrycode=in`;
+
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        const suggestions = document.getElementById('suggestions');
+                        suggestions.innerHTML = '';  // Clear previous suggestions
+
+                        if (data.results.length > 0) {
+                            data.results.forEach(result => {
+                                const suggestionItem = document.createElement('div');
+                                suggestionItem.textContent = result.formatted;
+                                suggestionItem.addEventListener('click', function () {
+                                    document.getElementById('parea_details').value = result.formatted;
+
+                                    // Populate other form fields if necessary
+                                    const details = result.components;
+                                    document.getElementById('pcity').value = details.city || details.town || details.village || '';
+                                    document.getElementById('pstate').value = details.state || '';
+                                    document.getElementById('parea_details').value = details.suburb || details.neighbourhood || '';
+                                    document.getElementById('plandmark').value = details.road || '';
+
+                                    // Clear suggestions
+                                    suggestions.innerHTML = '';
+                                });
+                                suggestions.appendChild(suggestionItem);
+                            });
+                        } else {
+                            const noResult = document.createElement('div');
+                            noResult.textContent = 'No suggestions found';
+                            suggestions.appendChild(noResult);
+                        }
+                    })
+                    .catch(error => console.error('Error fetching suggestions:', error));
+            } else {
+                // Clear suggestions if query is too short
+                document.getElementById('suggestions').innerHTML = '';
+            }
+        });
+
+        document.getElementById('area_details').addEventListener('input', function () {
+            const query = this.value;
+            const apiKey = 'ec885b74941242f396d823ab142d3810';
+
+            if (query.length > 2) {  // Start searching after the user has typed at least 3 characters
+                const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(query)}&key=${apiKey}&limit=10&countrycode=in`;
+
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        const suggestions2 = document.getElementById('suggestions2');
+                        suggestions2.innerHTML = '';  // Clear previous suggestions2
+
+                        if (data.results.length > 0) {
+                            data.results.forEach(result => {
+                                const suggestionItem = document.createElement('div');
+                                suggestionItem.textContent = result.formatted;
+                                suggestionItem.addEventListener('click', function () {
+                                    document.getElementById('area_details').value = result.formatted;
+
+                                    // Populate other form fields if necessary
+                                    const details = result.components;
+                                    document.getElementById('city').value = details.city || details.town || details.village || '';
+                                    document.getElementById('state').value = details.state || '';
+                                    document.getElementById('area_details').value = details.suburb || details.neighbourhood || '';
+                                    document.getElementById('landmark').value = details.road || '';
+
+                                    // Clear suggestions2
+                                    suggestions2.innerHTML = '';
+                                });
+                                suggestions2.appendChild(suggestionItem);
+                            });
+                        } else {
+                            const noResult = document.createElement('div');
+                            noResult.textContent = 'No suggestions2 found';
+                            suggestions2.appendChild(noResult);
+                        }
+                    })
+                    .catch(error => console.error('Error fetching suggestions2:', error));
+            } else {
+                // Clear suggestions2 if query is too short
+                document.getElementById('suggestions2').innerHTML = '';
+            }
+        });
+
+        // Close suggestions when clicking outside
+        document.addEventListener('click', function (event) {
+            const suggestions = document.getElementById('suggestions');
+            if (!suggestions.contains(event.target) && event.target.id !== 'parea_details') {
+                suggestions.innerHTML = '';
+            }
+        });
+        document.addEventListener('click', function (event) {
+            const suggestions2 = document.getElementById('suggestions2');
+            if (!suggestions2.contains(event.target) && event.target.id !== 'area_details') {
+                suggestions2.innerHTML = '';
+            }
+        });
+    </script>
+
+
+    <script>
+
+        // Save form data to localStorage on input/change
+        $('input, select, textarea').on('input change', function () {
+            let formData = {};
+            $('#msform').find('input, select, textarea').each(function () {
+                formData[$(this).attr('name')] = $(this).val();
+            });
+            localStorage.setItem('formData', JSON.stringify(formData));
+        });
+
+        document.getElementById('aadhaar_no').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, ''); // Remove all non-digit characters
+            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || ''; // Group by 4 digits and join with a space
+            e.target.value = formattedValue;
+        });
+
+
+        // Load form data from localStorage on page load
+        $(document).ready(function () {
+            let savedFormData = JSON.parse(localStorage.getItem('formData'));
+            if (savedFormData) {
+                $('#msform').find('input, select, textarea').each(function () {
+                    let fieldName = $(this).attr('name');
+                    if (savedFormData[fieldName]) {
+                        $(this).val(savedFormData[fieldName]);
+                    }
+                });
+
+                // If an image link was saved, update the image preview
+                if (savedFormData['pic_link']) {
+                    updateImagePreview(savedFormData['pic_link']);
+                }
+            }
+        });
+
+        // Function to update the image preview
+        function updateImagePreview(link) {
+            var match = link.match(/\/d\/(.+?)\//);
+            if (match && match[1]) {
+                var link_first_part = "https://drive.google.com/thumbnail?id=";
+                var link_last_part = match[1];
+                var link_final = link_first_part + link_last_part + "&sz=w4000"; // Adjust sz=w1000 as needed
+                $('#imagePreview').css('background-image', 'url(' + link_final + ')');
+            }
+        }
+
+        $('#profile_drive_link').on('input', function () {
+            var link = $(this).val();
+            updateImagePreview(link);
+        });
+
+        // Clear localStorage on form submission
+        $('#msform').on('submit', function () {
+            localStorage.removeItem('formData');
+        });
+
+        $('#profile_drive_link').on('input', function () {
+            var link = $(this).val();
+            var link_final = "";
+
+            // Regular expression to match the file ID in the Google Drive URL
+            var match = link.match(/\/d\/(.+?)\//);
+            if (match && match[1]) {
+                var link_first_part = "https://drive.google.com/thumbnail?id=";
+                var link_last_part = match[1];
+                link_final = link_first_part + link_last_part + "&sz=w4000"; // Adjust sz=w1000 as needed
+            } else {
+                alert("Invalid Google Drive link. Please ensure it follows the correct format.");
+                return;
+            }
+
+            // Set the background image
+            $('#imagePreview').css('background-image', 'url(' + link_final + ')');
+        });
+
+
+
+
+        $('.clearButton').on('click', function () {
+            if (confirm('Are you sure you want to clear the saved data?')) {
+                localStorage.removeItem('formData');
+                $('#msform').find('input, select, textarea').each(function () {
+                    $(this).val('');
+                });
+
+                // Reset image preview to default
+                $('#imagePreview').css('background-image', 'url(./images/default.jpg))');
+            }
+        });
+    </script>
+
+</body>
+
+</html>
