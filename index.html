@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,9 +77,9 @@
                                 <label class="fieldlabels">Username: *</label>
                                 <input type="text" name="username" placeholder="UserName" />
 
-                                <!-- Token input  -->
-                                <label class="fieldlabels">Token</label>
-                                <input type="text" name="token" placeholder="Token" />
+                                <!-- Password input  -->
+                                <label class="fieldlabels">Password</label>
+                                <input type="password" name="Password" placeholder="Password" />
 
 
                             </div>
@@ -133,7 +132,7 @@
 
 
                                 <label class="fieldlabels">Year of admission: *</label>
-                                <input type="number" min="2000" max="2050" step="1" value="2020"
+                                <input type="number" min="2000" max="2050" step="1" value=""
                                     name="year_of_admission" />
 
                                 <label class="fieldlabels">Branch: *</label> <br>
@@ -150,8 +149,7 @@
                                     <option value="bc">Beauty Culture</option>
                                 </select> <br>
                                 <label class="fieldlabels">Proctor teacher: </label> <br>
-                                <select name="proc_teacher" id="">
-                                    <option value="">Select Proctor Teacher</option>
+                                <input type="text" name="Proctor teacher" placeholder="Proctor teacher"/>
 
 
                                 </select> <br>
@@ -166,10 +164,10 @@
                                     <option value="6">Sixth Semester</option>
                                 </select> <br>
                                 <label class="fieldlabels">Contact No.: *</label>
-                                <input type="text" name="phno" placeholder="Contact No." />
+                                <input type="number" name="phno" placeholder="Contact No." />
 
                                 <label class="fieldlabels">Whatsapp No.: *</label>
-                                <input type="text" name="contact_wp" placeholder="Whatsapp No." />
+                                <input type="number" name="contact_wp" placeholder="Whatsapp No." />
 
                                 <label class="fieldlabels">Gender: *</label> <br>
                                 <!-- gender male female and others -->
@@ -183,7 +181,7 @@
                                 <input type="date" name="dob" />
 
                                 <label class="fieldlabels">Aadhar Number: *</label>
-                                <input type="text" name="aadhaar_no" id="aadhaar_no" placeholder="Aadhar Number"
+                                <input type="number" name="aadhaar_no" id="aadhaar_no" placeholder="Aadhar Number"
                                     maxlength="14" />
 
 
@@ -254,7 +252,7 @@
                                 <br>
 
                                 <label class="fieldlabels">Pincode: *</label>
-                                <input id="ppincode" type="text" name="ppincode" placeholder="6 digits [0-9] PIN code"
+                                <input id="ppincode" type="number" name="ppincode" placeholder="6 digits [0-9] PIN code"
                                     maxlength="6" pattern="[0-9]{6}" required />
                                 <br>
 
@@ -269,7 +267,7 @@
                                 <br>
 
                                 <label class="fieldlabels">Pincode: *</label>
-                                <input id="pincode" type="text" name="pincode" placeholder="6 digits [0-9] PIN code"
+                                <input id="pincode" type="number" name="pincode" placeholder="6 digits [0-9] PIN code"
                                     maxlength="6" pattern="[0-9]{6}" required />
                                 <br>
 
@@ -302,7 +300,7 @@
                                 <input type="text" name="father_occupation" placeholder="Father's Occupation" />
                                 <br>
                                 <label class="fieldlabels">Father's Contact No.: *</label>
-                                <input type="text" name="father_contact" placeholder="Father's Contact No." />
+                                <input type="number" name="father_contact" placeholder="Father's Contact No." />
                                 <br>
                                 <label class="fieldlabels">Mother's Name: *</label>
                                 <input type="text" name="mother_name" placeholder="Mother's Name" />
@@ -311,7 +309,7 @@
                                 <input type="text" name="mother_occupation" placeholder="Mother's Occupation" />
                                 <br>
                                 <label class="fieldlabels">Mother's Contact No.: *</label>
-                                <input type="text" name="mother_contact" placeholder="Mother's Contact No." />
+                                <input type="number" name="mother_contact" placeholder="Mother's Contact No." />
                                 <br>
                                 <label class="fieldlabels">Guardian's Name: *</label>
                                 <input type="text" name="guardian_name" placeholder="Guardian's Name" />
@@ -320,7 +318,7 @@
                                 <input type="text" name="guardian_occupation" placeholder="Guardian's Occupation" />
                                 <br>
                                 <label class="fieldlabels">Guardian's Contact No.: *</label>
-                                <input type="text" name="guardian_contact" placeholder="Guardian's Contact No." />
+                                <input type="number" name="guardian_contact" placeholder="Guardian's Contact No." />
                                 <br>
                                 <label class="fieldlabels">Name of the Scholarship Recieved: *</label>
                                 <input type="text" name="scholarship" placeholder="Type no if not recieved" />
@@ -433,7 +431,7 @@
             const apiKey = 'ec885b74941242f396d823ab142d3810';
 
             if (query.length > 2) {  // Start searching after the user has typed at least 3 characters
-                const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(query)}&key=${apiKey}&limit=10&countrycode=in`;
+                const url = https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(query)}&key=${apiKey}&limit=10&countrycode=in;
 
                 fetch(url)
                     .then(response => response.json())
@@ -478,7 +476,7 @@
             const apiKey = 'ec885b74941242f396d823ab142d3810';
 
             if (query.length > 2) {  // Start searching after the user has typed at least 3 characters
-                const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(query)}&key=${apiKey}&limit=10&countrycode=in`;
+                const url = https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(query)}&key=${apiKey}&limit=10&countrycode=in;
 
                 fetch(url)
                     .then(response => response.json())
