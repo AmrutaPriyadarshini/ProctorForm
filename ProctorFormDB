@@ -1,0 +1,90 @@
+CREATE TABLE Student (
+    RegdNumber VARCHAR(30) PRIMARY KEY,
+    Email VARCHAR(50),
+    Username VARCHAR(50),
+    Password VARCHAR(30),
+    Image BLOB,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    YearOfAdmission YEAR,
+    Branch VARCHAR(30),
+    ProctorTeacher VARCHAR(60),
+    Semester VARCHAR(10),
+    ContactNo INT,
+    WhatsappNo INT,
+    Gender VARCHAR(10),
+    DOB DATE,
+    AadharNumber INT,
+    Caste VARCHAR(10),
+    Blood VARCHAR(10),
+    Living BOOLEAN,
+    HostelName VARCHAR(30),
+    Scholarship VARCHAR(100),
+    Strength VARCHAR(30),
+    Weakness VARCHAR(30),
+    Hobbies VARCHAR(30),
+    Curricular VARCHAR(30)
+);
+
+CREATE TABLE Address (
+    RegdNumber VARCHAR(30),
+    FlatDetails VARCHAR(50),
+    AreaDetails VARCHAR(50),
+    Landmark VARCHAR(50),
+    City VARCHAR(50),
+    Pincode INT,
+    State VARCHAR(50),
+    PRIMARY KEY (RegdNumber),
+    FOREIGN KEY (RegdNumber) REFERENCES Student(RegdNumber) ON DELETE CASCADE
+);
+
+CREATE TABLE PermanentAddress (
+    RegdNumber VARCHAR(30),
+    PFlatDetails VARCHAR(50),
+    PAreaDetails VARCHAR(50),
+    PLandmark VARCHAR(50),
+    PCity VARCHAR(50),
+    PState VARCHAR(50),
+    PPincode INT,
+    PRIMARY KEY (RegdNumber),
+    FOREIGN KEY (RegdNumber) REFERENCES Student(RegdNumber) ON DELETE CASCADE
+);
+
+CREATE TABLE Family (
+    RegdNumber VARCHAR(30),
+    Fname VARCHAR(60),
+    Foccupation VARCHAR(50),
+    Fcontact INT,
+    Mname VARCHAR(60),
+    Moccupation VARCHAR(50),
+    Mcontact INT,
+    Gname VARCHAR(60),
+    Goccupation VARCHAR(50),
+    Gcontact INT,
+    PRIMARY KEY (RegdNumber),
+    FOREIGN KEY (RegdNumber) REFERENCES Student(RegdNumber) ON DELETE CASCADE
+);
+
+CREATE TABLE Documents (
+    RegdNumber VARCHAR(30),
+    doc_10th BLOB,
+    HSCMark VARCHAR(30),
+    HSCYear YEAR,
+    doc_12th BLOB,
+    12Mark VARCHAR(30),
+    12Year YEAR,
+    PRIMARY KEY (RegdNumber),
+    FOREIGN KEY (RegdNumber) REFERENCES Student(RegdNumber) ON DELETE CASCADE
+);
+
+CREATE TABLE Examination (
+    RegdNumber VARCHAR(30),
+    SemOne VARCHAR(30),
+    SemTwo VARCHAR(30),
+    SemThree VARCHAR(30),
+    SemFour VARCHAR(30),
+    SemFive VARCHAR(30),
+    SemSix VARCHAR(30),
+    PRIMARY KEY (RegdNumber),
+    FOREIGN KEY (RegdNumber) REFERENCES Student(RegdNumber) ON DELETE CASCADE
+);
